@@ -3,62 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photos filter</title>
+    <title>Photo gallery</title>
+    <meta name="author" content="Dominik Szczepański">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
     <section>
-        <ul class="filter-menu">
+        <h1> Photo galley</h1>
+    <ul class="filter-menu">
             <li class="filter-option <?php echo !isset($_GET["filter"]) ? "active" : ""  ?>">
-                <a href="?">All</a>
+                <!--<a href="?">All</a>-->
             </li>
             <li class="filter-option <?php echo isset($_GET["filter"])
-                && $_GET["filter"] == "city" ? "active" : ""  ?>">
-                <a href="?filter=city">cities</a>
+                && $_GET["filter"] == "cars" ? "active" : ""  ?>">
+                <a href="?filter=cars">Cars</a>
             </li>
             <li class="filter-option <?php echo isset($_GET["filter"])
-                && $_GET["filter"] == "car" ? "active" : ""  ?>">
-                <a href="?filter=car">cars</a>
+                && $_GET["filter"] == "cats" ? "active" : ""  ?>">
+                <a href="?filter=cats">Cats</a>
             </li>
             <li class="filter-option <?php echo isset($_GET["filter"])
-                && $_GET["filter"] == "nature" ? "active" : ""  ?>">
-                <a href="?filter=nature">Nature</a>
+                && $_GET["filter"] == "cities" ? "active" : ""  ?>">
+                <a href="?filter=cities">Cities</a>
             </li>
             <li class="filter-option <?php echo isset($_GET["filter"])
-                && $_GET["filter"] == "electronics" ? "active" : ""  ?>">
-                <a href="?filter=electronics">Electronics</a>
+                && $_GET["filter"] == "flowers" ? "active" : ""  ?>">
+                <a href="?filter=flowers">Flowers</a>
             </li>
         </ul>
         <div class="gallery">
             <?php
-                $categories = ["city", "car", "nature", "electronics"];
-                $totalImages =12;
-                $currentFilter = isset($_GET["filter"]) ? $_GET["filter"]: "all";
 
-                for ($i = 0; $i < $totalImages; $i++) {
-                    $category = $categories[$i % count($categories)];
+            $categories = ["cars", "cats", "cities", "flowers"];
+            $currentFilter = isset($_GET["filter"]) ? $_GET["filter"]: "all";
 
-                    if ($currentFilter === "all" || $currentFilter === $category) {
-                        //echo "<div style='background-image: url('photos/car/1.jpeg');'> Elo</div>";
-                        
-                        /*echo "<div style='height: 100px; 
-                            background-image: url('photos/" .$category. "4.jpeg.webp');'>X</div>";*/
-                        
-                        /* style='background-image: url(https://source.unsplash.com/200x200/?
-                            .$category.". "&" .rand(). ");'> x  */
-    
-                        echo '<div class="gallery-item" style="height: 200px; background-image: url(\'photos/' . $category . rand(1,4).'.jpeg\');"></div>';
+            $dir = $currentFilter; #$_GET["filter"]; // Ścieżka do katalogu na podstawie linku URL
 
-                        
+            if($_GET["filter"] == "all" || !isset($_GET["filter"]) ){
+
+
+            }else{
+                
+                // Sprawdzanie, czy udało się otworzyć katalog
+                if (is_dir($dir)) {
+                    if ($dh = opendir($dir)) {
+
+                        // Iterowanie po plikach i katalogach
+                        while (($file = readdir($dh)) !== false) {
+                
+                            if ($file != "." && $file != "..") {
+                                echo '<div class="gallery-item" style="height: 200px; background-image: url(\'' . $currentFilter . '/' . $file . '\');"></div>';
+                            }
+                        }
+                        // Zamknięcie katalogu
+                        closedir($dh);
                     }
+                } else {
+                    echo "Directory doesn't exist";
                 }
-                        //<img src="photos/car/4.jpeg.webp" alt="Opis zdjęcia">
-                        
-                        //<div style="height: 100px; background-image: url('photos/car/4.jpeg.webp');">X</div>
-
-                        //echo "<div style='height: 100px; background-image: url('photos/" .$category. "4.jpeg.webp');'>X</div>";
-                        //$category = 'city';
-                        //echo '<div style="height: 100px; background-image: url(\'photos/' . $category . '1.jpeg\');">X</div>';
+            }
             ?>
         </div>
     </section>
