@@ -4,7 +4,10 @@ This project is simple photo gallery with filtering. Just put photos in topic fo
 <br>
 You can also filter those photos by buttons with the names of each category that are placed on the top of the website.
 
-## What youu need to run the program
+## What you need to run the program
 
-All you need to do to run program is to create folder for each category (for those already used in example you need: 'cats', 'cars', 'cities' and 'flowers' ). Next you need to put photos according to the category (nam eof the phopto and extension doesn't matter) and you ggod to go.
+All you need to do to run program is to create folder for each category of photos (for those already used in example you need: 'cats', 'cars', 'cities' and 'flowers' ). Next you need to put photos according to the category (name of the phopto and extension doesn't matter) and you good to go.
+
+<br>
+And of course you need PHP interpreter - XAMPP to run locally
  
