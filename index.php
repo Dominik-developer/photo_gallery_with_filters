@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Link to repository: https://github.com/Dominik-developer/photo_gallery_with_filters-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,14 +41,12 @@
             $categories = ["cars", "cats", "cities", "flowers"];
             $currentFilter = isset($_GET["filter"]) ? $_GET["filter"]: "all";
 
-            $dir = $currentFilter; #$_GET["filter"]; // Ścieżka do katalogu na podstawie linku URL
+            $dir = $currentFilter; #$_GET["filter"]; 
 
             if($_GET["filter"] == "all" || !isset($_GET["filter"]) ){
 
-
             }else{
                 
-                // Sprawdzanie, czy udało się otworzyć katalog
                 if (is_dir($dir)) {
                     if ($dh = opendir($dir)) {
 
@@ -58,7 +57,6 @@
                                 echo '<div class="gallery-item" style="height: 200px; background-image: url(\'' . $currentFilter . '/' . $file . '\');"></div>';
                             }
                         }
-                        // Zamknięcie katalogu
                         closedir($dh);
                     }
                 } else {
