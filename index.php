@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- Link to repository: https://github.com/Dominik-developer/photo_gallery_with_filters-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo gallery</title>
     <meta name="author" content="Dominik Szczepański">
+    <!--  link to repo: https://github.com/Dominik-developer/photo_gallery_with_filters-->
 
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -16,7 +16,7 @@
         <h1> Photo galley</h1>
     <ul class="filter-menu">
             <li class="filter-option <?php echo !isset($_GET["filter"]) ? "active" : ""  ?>">
-                <!--<a href="?">All</a>-->
+
             </li>
             <li class="filter-option <?php echo isset($_GET["filter"])
                 && $_GET["filter"] == "cars" ? "active" : ""  ?>">
@@ -41,22 +41,27 @@
             $categories = ["cars", "cats", "cities", "flowers"];
             $currentFilter = isset($_GET["filter"]) ? $_GET["filter"]: "all";
 
-            $dir = $currentFilter; #$_GET["filter"]; 
+            $dir = $currentFilter; 
 
             if($_GET["filter"] == "all" || !isset($_GET["filter"]) ){
 
+                echo '<h3>Select a photo category</h3>';
+
+
             }else{
                 
+
                 if (is_dir($dir)) {
                     if ($dh = opendir($dir)) {
 
-                        // Iterowanie po plikach i katalogach
+                        
                         while (($file = readdir($dh)) !== false) {
                 
                             if ($file != "." && $file != "..") {
                                 echo '<div class="gallery-item" style="height: 200px; background-image: url(\'' . $currentFilter . '/' . $file . '\');"></div>';
                             }
                         }
+
                         closedir($dh);
                     }
                 } else {

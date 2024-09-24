@@ -12,12 +12,13 @@ body {
     min-height: 100vh;
     justify-content: center;
     align-items: flex-start;
-    background-color: #121212;
-    color: #fff;
+    background-color: #fff;
+    color: #121212;
 }
 
 h1{
 padding-bottom: 20px;
+font-size: 40px;
 }
 
 section {
@@ -29,7 +30,7 @@ section {
 
 .filter-menu {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .filter-option {
@@ -50,30 +51,44 @@ section {
     color: #fff;
 }
 
+
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    /*max-width: 1200px;*/
+    width: 1150px; 
+    min-height: 300px; 
+    position: relative; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
 }
 
 .gallery-item {
-    display: block;
     width: 200px;
-    height: 200px;
-    margin: 10px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #fff;
-    /*background-color: #fff ;*/
+    height: 200px; 
+    margin: 10px; 
+    border: 1px solid #121212; 
+    position: relative; 
+    background-size: cover; 
+    background-position: center; 
+    transition: transform 0.3s ease, z-index 0s; 
+    background-color: #121212;
 }
 
-/*
-.gallery-item:hover{
-    background-size: cover;
-    width: 300px;
-    min-height: 300px;
-
-    margin-bottom: 50px;
+.gallery-item:hover {
+    z-index: 10; 
+    transform: scale(1.5); 
 }
-*/
+
+
+/* dark/light mode*/
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #fff;
+    }
+
+    .gallery-item{
+        background-color: #fff;
+        border: #fff;
+    }
+}
+
